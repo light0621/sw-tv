@@ -112,9 +112,13 @@
 				?>
 				<a class="clumn3_left column3_box" href="<?php echo get_permalink(); ?>">
 					<div class="img_box">
-						<img src="<?php echo get_template_directory_uri(); ?>/image/topics_sample1.jpg" alt="">
+						<?php if (has_post_thumbnail()) : ?>
+							<?php the_post_thumbnail('thumbnail'); ?>
+						<?php else : ?>
+							<img src="<?php bloginfo('template_url'); ?>/image/no_image.png" alt="デフォルト画像" />
+						<?php endif ; ?>
 					</div>
-					<p class="date"><?php the_time('Y,n月,j日');?></p>
+					<p class="date"><?php the_time('Y年n月j日');?></p>
 					<p class="topics_ttl"><?php the_title(); ?></p>
 				</a>
 				<?php
@@ -123,21 +127,6 @@
 				?>
 				<!--ここまで-->
 
-				<a class="clumn3_center column3_box" href="#">
-					<div class="img_box">
-						<img src="<?php echo get_template_directory_uri(); ?>/image/topics_sample2.jpg" alt="">
-					</div>
-					<p class="date">2020.01.01</p>
-					<p class="topics_ttl">記事のタイトルが入ります記事のタイトルが入ります.記事のタイトルが入ります記事のタイトルが入ります</p>
-				</a>
-
-				<a class="clumn3_right column3_box" href="#">
-					<div class="img_box">
-						<img src="<?php echo get_template_directory_uri(); ?>/image/topics_sample3.jpg" alt="">
-					</div>
-					<p class="date">2020.01.01</p>
-					<p class="topics_ttl">記事のタイトルが入ります記事のタイトルが入ります</p>
-				</a>
 			</div><!-- flex_wrapper -->
 
 			<div class="small_btn next_btn">
