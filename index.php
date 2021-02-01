@@ -26,16 +26,23 @@
 			<p class="ja-ttl">空撮動画</p>
 			<div class="swiper-container">
 				<ul class="swiper-wrapper">
-
+					<?php
+					if (have_posts()):
+						while ( have_posts() ): the_post();
+					?>
 					<li class="swiper-slide img_cont">
 						<a href="<?php echo get_template_directory_uri(); ?>/movie/YouTube019.mp4" data-lity="data-lity">
 							<img src="<?php echo get_template_directory_uri(); ?>/image/YouTube019_Moment.jpg" alt="">
 							<div class="txt_box">
-								<p class="date">2020.01.01</p>
-								<p class="movie_ttl">動画のタイトルが入ります</p>
+								<p class="date"><?php the_time('Y年n月j日'); ?></p>
+								<p class="movie_ttl"><?php the_title(); ?></p>
 							</div>
 						</a>
 					</li>
+					<?php
+						endwhile;
+					endif;
+					?>
 
 					<li class="swiper-slide img_cont">
 						<a href="<?php echo get_template_directory_uri(); ?>/movie/YouTube021.mp4" data-lity="data-lity">
@@ -112,13 +119,9 @@
 				?>
 				<a class="clumn3_left column3_box" href="<?php echo get_permalink(); ?>">
 					<div class="img_box">
-						<?php if (has_post_thumbnail()) : ?>
-							<?php the_post_thumbnail('thumbnail'); ?>
-						<?php else : ?>
-							<img src="<?php bloginfo('template_url'); ?>/image/no_image.png" alt="デフォルト画像" />
-						<?php endif ; ?>
+						<img src="<?php echo get_template_directory_uri(); ?>/image/topics_sample1.jpg" alt="">
 					</div>
-					<p class="date"><?php the_time('Y年n月j日');?></p>
+					<time class="date" datetime="<?php the_time('Y,m,d'); ?>"><?php the_time('Y年m月d日');?></p>
 					<p class="topics_ttl"><?php the_title(); ?></p>
 				</a>
 				<?php

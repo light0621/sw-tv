@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 
-		<title><?php bloginfo('name') ?></title>
+
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/reset.css">
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.min.css">
 		<!-- font awesome 5.15.2 -->
@@ -38,10 +38,17 @@
       });
     </script>
 
-		<?php wp_head(); ?>
+		<?php
+		 	wp_enqueue_script('jquary');
+			wp_head();
+		?>
 	</head>
 
-	<body>
+	<body <?php body_class(); ?>>
+		<?php wp_body_open(); ?>
+
+		<!--トップページのみメイン画像あり-->
+		<?php if ( is_home() ): ?>
 		<div class="bg-video-wrap">
 			<video id="player" muted autoplay loop>
 				<source src="<?php echo get_template_directory_uri(); ?>/movie/YouTube035.mp4" type="video/mp4">
@@ -50,9 +57,8 @@
 
 			<!-- 動画の上に透過の黒いボックスを重ねる　-->
 			<div class="overlay"></div>
-
 			<div class="logo_box">
-				<h1><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/image/logo.png" alt="SQUARE WHITE"></a></h1>
+				<h1><a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/image/logo.png" alt="SQUARE WHITE"></a></h1>
 			</div>
 
 			<div class="menu_list">
@@ -64,4 +70,6 @@
 				</ul>
 			</div>
 			<p class="small_btn contact_btn"><a href="#contact"><span class="btn_text">CONTACT</span></a></p>
+
 		</div>
+		<?php endif; ?>
